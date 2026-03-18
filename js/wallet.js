@@ -275,17 +275,23 @@ function handleExportCSV() {
     URL.revokeObjectURL(url);
 }
 
-function copyToClipboard(elementId) {
+function copyToClipboard(elementId, btn) {
     const text = document.getElementById(elementId).textContent;
     navigator.clipboard.writeText(text).then(() => {
-        const btn = event.currentTarget;
-        const originalText = btn.textContent;
-        btn.textContent = 'Copied!';
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copied!';
         btn.classList.add('copied');
         setTimeout(() => {
-            btn.textContent = originalText;
+            btn.innerHTML = originalHTML;
             btn.classList.remove('copied');
         }, 1500);
+    }).catch(() => {
+        const el = document.getElementById(elementId);
+        const range = document.createRange();
+        range.selectNodeContents(el);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
     });
 }
 
