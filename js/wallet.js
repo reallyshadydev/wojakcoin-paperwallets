@@ -303,10 +303,11 @@ function switchTab(tabName) {
 }
 
 // ============================================================
-// Smooth scroll for navigation
+// Smooth scroll & UI initialization
 // ============================================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -314,6 +315,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (target) {
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
+            // Close mobile menu if open
+            const navLinks = document.getElementById('navLinks');
+            if (navLinks) navLinks.classList.remove('open');
         });
     });
 
@@ -325,4 +329,32 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinks.classList.toggle('open');
         });
     }
+
+    // Navbar background on scroll
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
+        });
+    }
+
+    // Offline detection banner
+    updateOnlineStatus();
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
 });
+
+function updateOnlineStatus() {
+    let banner = document.getElementById('offlineBanner');
+    if (!navigator.onLine) {
+        if (!banner) {
+            banner = document.createElement('div');
+            banner.id = 'offlineBanner';
+            banner.className = 'offline-banner';
+            banner.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> You are offline — maximum security mode. Keys generated here never touch the network.';
+            document.body.prepend(banner);
+        }
+    } else if (banner) {
+        banner.remove();
+    }
+}

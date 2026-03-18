@@ -166,6 +166,38 @@ body {
     transition: var(--transition);
 }
 
+/* ---------- Navbar Scrolled State ---------- */
+.navbar.scrolled {
+    background: rgba(10, 10, 20, 0.95);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- Offline Banner ---------- */
+.offline-banner {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, rgba(0, 200, 83, 0.15), rgba(0, 200, 83, 0.05));
+    border-bottom: 1px solid rgba(0, 200, 83, 0.2);
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
 /* ---------- Hero Section ---------- */
 .hero {
     position: relative;
@@ -1230,6 +1262,27 @@ body {
     .params-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+}
+
+/* ---------- Selection Colors ---------- */
+::selection {
+    background: rgba(240, 185, 11, 0.3);
+    color: #fff;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-light);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
 }
 
 /* ---------- Print-Only Paper Wallet ---------- */

@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WojakCoin Paper Wallet Generator — Secure WJK Wallet Creation</title>
     <meta name="description" content="Generate secure WojakCoin (WJK) paper wallets entirely in your browser. Create P2PKH addresses starting with W for safe offline storage.">
+    <link rel="icon" type="image/svg+xml" href="img/logo.svg">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- External Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/elliptic@6.6.1/dist/elliptic.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+    <!-- Crypto Libraries (bundled locally for security & offline use) -->
+    <script src="js/vendor/elliptic.min.js"></script>
+    <script src="js/vendor/qrcode.min.js"></script>
 
     <!-- App Styles -->
     <link rel="stylesheet" href="css/style.css">
@@ -25,8 +26,7 @@
         <div class="nav-container">
             <a href="#" class="nav-logo">
                 <div class="logo-coin">
-                    <img src="img/logo.png" alt="WojakCoin" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <span class="logo-fallback" style="display:none;">W</span>
+                    <img src="img/logo.png" alt="WojakCoin" class="logo-img" onerror="this.onerror=null; this.src='img/logo.svg';">
                 </div>
                 <span class="logo-text">WojakCoin</span>
             </a>
@@ -195,8 +195,7 @@
                                 <div class="paper-side paper-public">
                                     <div class="paper-header">
                                         <div class="paper-logo">
-                                            <img src="img/logo.png" alt="WJK" class="paper-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                            <span class="paper-logo-fallback" style="display:none;">W</span>
+                            <img src="img/logo.png" alt="WJK" class="paper-logo-img" onerror="this.onerror=null; this.src='img/logo.svg';">
                                         </div>
                                         <div class="paper-title-group">
                                             <span class="paper-brand">WOJAKCOIN</span>
@@ -415,10 +414,9 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <div class="logo-coin small">
-                        <img src="img/logo.png" alt="WJK" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <span class="logo-fallback" style="display:none;">W</span>
-                    </div>
-                    <span class="footer-name">WojakCoin Paper Wallet Generator</span>
+                    <img src="img/logo.png" alt="WJK" class="logo-img" onerror="this.onerror=null; this.src='img/logo.svg';">
+                </div>
+                <span class="footer-name">WojakCoin Paper Wallet Generator</span>
                 </div>
                 <div class="footer-info">
                     <p>All key generation happens client-side in your browser. No private keys are ever transmitted.</p>
